@@ -11,7 +11,7 @@ import screenshot
 from assets import *
 from item import Item
 
-delay = 0.5
+delay = 0.3
 TIMEOUT = 180
 NUM_LINES = 3
 log_file_name = 'greed_pendant_bonus_hist'
@@ -177,7 +177,7 @@ def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
 def context_menu_cube():
     global counter
     findAsset(GLOBAL_ANCHOR)
-    pyautogui.sleep(delay)
+    pyautogui.sleep(1)
     pydirectinput.press("f9")
     qolmenu = findAsset(QOLMENU, 0.9)
     if qolmenu is not None:
@@ -321,8 +321,9 @@ def stat_matching(item, target_stats):
 def proceed_cubing(continue_asset):
     global counter
     try:
-        retry = findAsset(continue_asset, 0.9, log=False)
+        retry = findAsset(continue_asset, 0.85, log=True)
         pyautogui.click(retry)
+        pyautogui.moveTo(retry.x+50, retry.y+50)
         pyautogui.sleep(delay)
         print(f"recubing!")
         counter += 1
@@ -400,8 +401,8 @@ def main():
                          "init_anchor": BONUS_CUBE_ANCHOR_INITIAL}
     cube = RED_CUBE_CONFIG
     # cube = BONUS_CUBE_CONFIG
-    # target_stats = {"baseint": 25, "basestr": 31, "basedex": 31, "baseluk": 31, "basemeso": 41, "basedrop": 41}
-    target_stats = {"baseatt": 22, "baseboss": 90}
+    target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 41, "basedrop": 41}
+    # target_stats = {"bonusatt": 21}
     cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step
