@@ -358,10 +358,12 @@ def recube(all_templates, item, cube, target_stats, initial):
         prompt = input(
             f"A target stat was already met after {counter} tries, recube anyways? (y/n): ")
         if prompt.lower() == 'y':
+            pyautogui.sleep(1)
             print(f"trying to proceed cubing with asset: {continue_asset}")
             return proceed_cubing(continue_asset)
         else:
             try:
+                pyautogui.sleep(1)
                 end = findAsset(END_CHAT, log=False)
                 pyautogui.click(end)
                 print("aborting!")
