@@ -77,7 +77,7 @@ def loadPotentialTemplates():
     base_matt_12 = bonus_matt_12 = cv2.imread(TWELVE_MATT_LINE)
     base_dmg_9 = bonus_dmg_9 = cv2.imread(NINE_DMG_LINE)
     base_dmg_12 = bonus_dmg_12 = cv2.imread(TWELVE_DMG_LINE)
-    base_bossdmg_30 = cv2.imread(BOSS_DMG_LINE)
+    base_boss_30 = cv2.imread(BOSS_DMG_LINE)
     base_ied_30 = cv2.imread(IED_LINE)
 
     print(f"Loading meso & drop lines...")
@@ -109,7 +109,7 @@ def loadPotentialTemplates():
         'base_matt_12': base_matt_12,
         'base_dmg_9': base_dmg_9,
         'base_dmg_12': base_dmg_12,
-        'base_bossdmg_30': base_bossdmg_30,
+        'base_bossdmg_30': base_boss_30,
         'base_ied_30': base_ied_30,
         'base_meso_20': base_meso_20,
         'base_drop_20': base_drop_20
