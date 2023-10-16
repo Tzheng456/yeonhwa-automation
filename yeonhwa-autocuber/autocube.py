@@ -257,7 +257,8 @@ def select_cube(cube):
         print(f"Selecting cube")
         pyautogui.click(cube_asset)
         pyautogui.sleep(delay)
-        pyautogui.click(cube_asset.x - 120, cube_asset.y+50)
+        print(f"reposition mouse!")
+        pyautogui.click(cube_asset.x - 120, cube_asset.y)
         pyautogui.sleep(delay)
     else:
         print(f"cube not found!")
@@ -320,7 +321,7 @@ def stat_matching(item, target_stats):
 def proceed_cubing(continue_asset):
     global counter
     try:
-        retry = findAsset(continue_asset, 0.85, log=False)
+        retry = findAsset(continue_asset, 0.9, log=False)
         pyautogui.click(retry)
         pyautogui.sleep(delay)
         print(f"recubing!")
@@ -356,6 +357,7 @@ def recube(all_templates, item, cube, target_stats, initial):
         prompt = input(
             f"A target stat was already met after {counter} tries, recube anyways? (y/n): ")
         if prompt.lower() == 'y':
+            print(f"trying to proceed cubing with asset: {continue_asset}")
             return proceed_cubing(continue_asset)
         else:
             try:
@@ -396,11 +398,11 @@ def main():
                        "init_anchor": RED_CUBE_ANCHOR_INITIAL}
     BONUS_CUBE_CONFIG = {"type": BONUS_CUBE, "anchor": BONUS_CUBE_ANCHOR,
                          "init_anchor": BONUS_CUBE_ANCHOR_INITIAL}
-    # cube = RED_CUBE_CONFIG
-    cube = BONUS_CUBE_CONFIG
+    cube = RED_CUBE_CONFIG
+    # cube = BONUS_CUBE_CONFIG
     # target_stats = {"baseint": 25, "basestr": 31, "basedex": 31, "baseluk": 31, "basemeso": 41, "basedrop": 41}
-    target_stats = {"bonusmatt": 21}
-    cube_limit = 1000
+    target_stats = {"baseatt": 22}
+    cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step
     context_menu_cube()
