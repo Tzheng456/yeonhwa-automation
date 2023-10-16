@@ -109,7 +109,7 @@ def loadPotentialTemplates():
         'base_matt_12': base_matt_12,
         'base_dmg_9': base_dmg_9,
         'base_dmg_12': base_dmg_12,
-        'base_bossdmg_30': base_boss_30,
+        'base_boss_30': base_boss_30,
         'base_ied_30': base_ied_30,
         'base_meso_20': base_meso_20,
         'base_drop_20': base_drop_20
@@ -401,7 +401,7 @@ def main():
     cube = RED_CUBE_CONFIG
     # cube = BONUS_CUBE_CONFIG
     # target_stats = {"baseint": 25, "basestr": 31, "basedex": 31, "baseluk": 31, "basemeso": 41, "basedrop": 41}
-    target_stats = {"baseatt": 22}
+    target_stats = {"baseatt": 22, "baseboss": 90}
     cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step
