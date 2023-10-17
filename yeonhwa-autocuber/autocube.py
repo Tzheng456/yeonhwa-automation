@@ -11,7 +11,7 @@ import screenshot
 from assets import *
 from item import Item
 
-delay = 0.3
+delay = 0.5
 TIMEOUT = 180
 NUM_LINES = 3
 log_file_name = 'greed_pendant_bonus_hist'
@@ -70,6 +70,10 @@ def loadPotentialTemplates():
     # CRIT DMG
     base_critdmg_8 = cv2.imread(CRIT_DMG_LINE)
 
+    # CD
+    base_cd_1 = bonus_cd_1 = cv2.imread(ONE_CD_LINE)
+    base_cd_2 = bonus_cd_2 = cv2.imread(TWO_CD_LINE)
+
     print(f"Loading weapon lines...")
     base_att_9 = bonus_att_9 = cv2.imread(NINE_ATT_LINE)
     base_att_12 = bonus_att_12 = cv2.imread(TWELVE_ATT_LINE)
@@ -112,7 +116,9 @@ def loadPotentialTemplates():
         'base_boss_30': base_boss_30,
         'base_ied_30': base_ied_30,
         'base_meso_20': base_meso_20,
-        'base_drop_20': base_drop_20
+        'base_drop_20': base_drop_20,
+        'base_cd_1': base_cd_1,
+        'base_cd_2': base_cd_2
     }
     bonus_templates = {
         'bonus_str_6': bonus_str_6,
@@ -142,6 +148,8 @@ def loadPotentialTemplates():
         'bonus_matt_12': bonus_matt_12,
         'bonus_dmg_9': bonus_dmg_9,
         'bonus_dmg_12': bonus_dmg_12,
+        'bonus_cd_1': bonus_cd_1,
+        'bonus_cd_2': bonus_cd_2
     }
     return [base_templates, bonus_templates]
 
@@ -383,6 +391,7 @@ def recube(all_templates, item, cube, target_stats, initial):
                 pygame.quit()
                 sys.exit(1)
     else:
+        # pyautogui.sleep(delay)
         return proceed_cubing(continue_asset)
 
 
@@ -403,8 +412,10 @@ def main():
                          "init_anchor": BONUS_CUBE_ANCHOR_INITIAL}
     cube = RED_CUBE_CONFIG
     # cube = BONUS_CUBE_CONFIG
-    target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 41, "basedrop": 41}
-    # target_stats = {"bonusatt": 21}
+    # target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 40, "basedrop": 40}
+    # target_stats = {"basemeso": 40, "basedrop": 40}
+    target_stats = {"basecd": 4, "baseluk": 25}
+    # target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
     cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step

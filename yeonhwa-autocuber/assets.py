@@ -78,3 +78,7 @@ IED_LINE = './assets/potentials/wep/ied_line.png'
 ### meso & drop rate lines
 MESO_LINE = './assets/potentials/stat/base/meso_line.png'
 DROP_LINE = './assets/potentials/stat/base/drop_line.png'
+
+### CD
+ONE_CD_LINE = './assets/potentials/stat/base/1_cd_line.png'
+TWO_CD_LINE = './assets/potentials/stat/base/2_cd_line.png'

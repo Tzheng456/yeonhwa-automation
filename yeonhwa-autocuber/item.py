@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, base_str=0, base_dex=0, base_int=0, base_luk=0, base_allstat=0, base_hp=0, critdmg=0, ied=0, boss=0, base_dmg=0, base_att=0, base_matt=0, meso=0, drop=0, bonus_str=0, bonus_dex=0, bonus_int=0, bonus_luk=0, bonus_allstat=0, bonus_hp=0, strperlevel=0, dexperlevel=0, intperlevel=0, lukperlevel=0, bonus_att=0, bonus_matt=0, bonus_dmg=0):
+    def __init__(self, base_str=0, base_dex=0, base_int=0, base_luk=0, base_allstat=0, base_hp=0, critdmg=0, ied=0, boss=0, base_dmg=0, base_att=0, base_matt=0, meso=0, drop=0, base_cd=0, bonus_str=0, bonus_dex=0, bonus_int=0, bonus_luk=0, bonus_allstat=0, bonus_hp=0, strperlevel=0, dexperlevel=0, intperlevel=0, lukperlevel=0, bonus_att=0, bonus_matt=0, bonus_dmg=0, bonus_cd=0):
         # base stats
         # STR
         self.base_str = base_str
@@ -29,6 +29,8 @@ class Item:
         self.base_meso = meso
         # DROP
         self.base_drop = drop
+        # CD
+        self.base_cd = base_cd
 
         # bonus stats
         # STR
@@ -57,6 +59,8 @@ class Item:
         self.bonus_matt = bonus_matt
         # DMG
         self.bonus_dmg = bonus_dmg
+        # CD
+        self.bonus_cd = bonus_cd
     
     def get_basestr(self):
         return self.base_str
@@ -188,6 +192,15 @@ class Item:
     def add_basedrop(self, val):
         self.base_drop += int(val)
 
+    def get_basecd(self):
+        return self.base_cd
+
+    def set_basecd(self, val):
+        self.base_cd = int(val)
+
+    def add_basecd(self, val):
+        self.base_cd += int(val)
+
     def get_bonusstr(self):
         return self.bonus_str
 
@@ -309,6 +322,15 @@ class Item:
     def add_bonusdmg(self, val):
         self.bonus_dmg += int(val)
 
+    def get_bonuscd(self):
+        return self.bonus_cd
+
+    def set_bonuscd(self, val):
+        self.bonus_cd = int(val)
+
+    def add_bonuscd(self, val):
+        self.bonus_cd += int(val)
+
     def clear_stats(self):
         setters = [self.set_basestr,
             self.set_basedex,
@@ -324,6 +346,7 @@ class Item:
             self.set_basematt,
             self.set_basemeso,
             self.set_basedrop,
+            self.set_basecd,
             self.set_bonusstr,
             self.set_bonusdex,
             self.set_bonusint,
@@ -336,7 +359,8 @@ class Item:
             self.set_bonuslukperlevel,
             self.set_bonusatt,
             self.set_bonusmatt,
-            self.set_bonusdmg]
+            self.set_bonusdmg,
+            self.set_bonuscd]
         for setter in setters:
             setter(0)
 
