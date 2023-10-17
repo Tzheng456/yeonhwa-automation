@@ -12,7 +12,7 @@ from assets import *
 from item import Item
 
 delay = 0.5
-TIMEOUT = 180
+TIMEOUT = 5
 NUM_LINES = 3
 log_file_name = 'greed_pendant_bonus_hist'
 counter = 0
@@ -169,17 +169,25 @@ def findAssetInImage(asset, image, potential_name):
 
 
 def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
-    if region is not None:
-        box = pyautogui.locateOnWindow(
-            asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
-    else:
-        box = pyautogui.locateOnWindow(
-            asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
-    if box == None:
-        return None
-    if log:
-        print("Found asset: ", asset, box)
-    return pyautogui.center(box)
+    counter = 0
+    while box is not None:
+        counter += 1
+        if region is not None:
+            box = pyautogui.locateOnWindow(
+                asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
+            if counter >= TIMEOUT:
+                print(f"Timed out without finding asset:", asset)
+                return None
+        else:
+            box = pyautogui.locateOnWindow(
+                asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
+            if counter >= TIMEOUT:
+                print(f"Timed out without finding asset:", asset)
+                return None
+        if log:
+            print("Found asset: ", asset, box)
+        return pyautogui.center(box)
+    return None
 
 
 def context_menu_cube():
