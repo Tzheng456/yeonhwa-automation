@@ -176,14 +176,13 @@ def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
     else:
         box = pyautogui.locateOnWindow(
             asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
-
-    while box is not None:
+    while box is None:
         counter += 1
         if region is not None:
             box = pyautogui.locateOnWindow(
                 asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
             if counter >= TIMEOUT:
-                print(f"Timed out without finding asset:", asset)
+                print(f"Timed out without finding asset in region:", asset)
                 return None
         else:
             box = pyautogui.locateOnWindow(
@@ -426,12 +425,12 @@ def main():
                        "init_anchor": RED_CUBE_ANCHOR_INITIAL}
     BONUS_CUBE_CONFIG = {"type": BONUS_CUBE, "anchor": BONUS_CUBE_ANCHOR,
                          "init_anchor": BONUS_CUBE_ANCHOR_INITIAL}
-    cube = RED_CUBE_CONFIG
-    # cube = BONUS_CUBE_CONFIG
+    # cube = RED_CUBE_CONFIG
+    cube = BONUS_CUBE_CONFIG
     # target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 40, "basedrop": 40}
     # target_stats = {"basemeso": 40, "basedrop": 40}
-    target_stats = {"basecd": 4, "baseluk": 25}
-    # target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
+    # target_stats = {"basecd": 4, "baseluk": 25}
+    target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
     cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step
