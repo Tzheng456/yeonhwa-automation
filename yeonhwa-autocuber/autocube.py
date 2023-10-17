@@ -170,6 +170,13 @@ def findAssetInImage(asset, image, potential_name):
 
 def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
     counter = 0
+    if region is not None:
+        box = pyautogui.locateOnWindow(
+            asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
+    else:
+        box = pyautogui.locateOnWindow(
+            asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
+
     while box is not None:
         counter += 1
         if region is not None:
@@ -184,10 +191,11 @@ def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
             if counter >= TIMEOUT:
                 print(f"Timed out without finding asset:", asset)
                 return None
-        if log:
-            print("Found asset: ", asset, box)
-        return pyautogui.center(box)
-    return None
+    if box is None:
+        return None
+    if log:
+        print("Found asset: ", asset, box)
+    return pyautogui.center(box)
 
 
 def context_menu_cube():
