@@ -429,8 +429,9 @@ def main():
     # cube = BONUS_CUBE_CONFIG
     # target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 40, "basedrop": 40}
     # target_stats = {"baseluk": 25, "basemeso": 40, "basedrop": 40}
-    target_stats = {"basemeso": 40, "basedrop": 40}
+    # target_stats = {"basemeso": 40}
     # target_stats = {"baseluk": 25}
+    target_stats = {"baseatt": 25}
     # target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
     cube_limit = 2000
     # initial run
