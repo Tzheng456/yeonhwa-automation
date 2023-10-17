@@ -18,4 +18,3 @@ def create_flame_result():
         screenshot(FLAME_RESULT, region)
     except:
         print(f"Failed to locate anchor: {e}")
-create_flame_result()
