@@ -82,3 +82,24 @@ DROP_LINE = './assets/potentials/stat/base/drop_line.png'
 ### CD
 ONE_CD_LINE = './assets/potentials/stat/base/1_cd_line.png'
 TWO_CD_LINE = './assets/potentials/stat/base/2_cd_line.png'
+
+### FLAMES ###
+FLAME_RESULT = './assets/temp/flameresult.png'
+
+### NPC ###
+ETERNAL_FLAME = './assets/npc/flame/eternal_flame.png'
+FLAME_ANCHOR = './assets/npc/flame/flame_anchor.png'
+REFLAME = './assets/npc/flame/reflame.png'
+STOP_FLAME = './assets/npc/flame/stop_flame.png'
+
+### STAT ###
+FLAME_ALLSTAT_LINE = './assets/flame/stat/allstat.png'
+FLAME_STR_LINE = './assets/flame/stat/str.png'
+FLAME_DEX_LINE = './assets/flame/stat/dex.png'
+FLAME_INT_LINE = './assets/flame/stat/int.png'
+FLAME_LUK_LINE = './assets/flame/stat/luk.png'
+
+### WEP ###
+FLAME_ATT_LINE = './assets/flame/wep/att.png'
+FLAME_BOSSDMG_LINE = './assets/flame/wep/bossdmg.png'
+FLAME_DMG_LINE = './assets/flame/wep/dmg.png'
