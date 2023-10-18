@@ -1,5 +1,5 @@
 from pyautogui import *
-from assets import *
+from assets.asset import *
 
 def create_cube_result(cube_type):
     print(f'Locating potential lines and taking screenshot of cube results!')

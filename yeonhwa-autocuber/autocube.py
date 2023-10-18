@@ -8,12 +8,12 @@ import pydirectinput
 import keyboard
 
 import screenshot
-from assets import *
+from assets.asset import *
 from util.image_recog import findAssetInImage, findAsset
 from item import Item
+from templates.cube_templates import loadPotentialTemplates
 
 delay = 0.5
-# TIMEOUT = 5
 NUM_LINES = 3
 log_file_name = 'greed_pendant_bonus_hist'
 counter = 0
@@ -21,181 +21,6 @@ running = True
 pygame.mixer.init()
 sound = pygame.mixer.Sound("./resources/diablo-gold.wav")
 sound.set_volume(0.5)
-
-
-def loadPotentialTemplates():
-    print(f"Loading stat lines...")
-    # STR
-    base_str_6 = bonus_str_6 = cv2.imread(SIX_STR_LINE)
-    bonus_str_8 = cv2.imread(EIGHT_STR_LINE)
-    base_str_9 = cv2.imread(NINE_STR_LINE)
-    base_str_12 = cv2.imread(TWELVE_STR_LINE)
-    bonus_strperlevel_1 = cv2.imread(ONE_STR_PER_LEVEL_LINE)
-    bonus_strperlevel_2 = cv2.imread(TWO_STR_PER_LEVEL_LINE)
-
-    # DEX
-    base_dex_6 = bonus_dex_6 = cv2.imread(SIX_DEX_LINE)
-    bonus_dex_8 = cv2.imread(EIGHT_DEX_LINE)
-    base_dex_9 = cv2.imread(NINE_DEX_LINE)
-    base_dex_12 = cv2.imread(TWELVE_DEX_LINE)
-    bonus_dexperlevel_1 = cv2.imread(ONE_DEX_PER_LEVEL_LINE)
-    bonus_dexperlevel_2 = cv2.imread(TWO_DEX_PER_LEVEL_LINE)
-
-    # INT
-    base_int_6 = bonus_int_6 = cv2.imread(SIX_INT_LINE)
-    bonus_int_8 = cv2.imread(EIGHT_INT_LINE)
-    base_int_9 = cv2.imread(NINE_INT_LINE)
-    base_int_12 = cv2.imread(TWELVE_INT_LINE)
-    bonus_intperlevel_1 = cv2.imread(ONE_INT_PER_LEVEL_LINE)
-    bonus_intperlevel_2 = cv2.imread(TWO_INT_PER_LEVEL_LINE)
-
-    # LUK
-    base_luk_6 = bonus_luk_6 = cv2.imread(SIX_LUK_LINE)
-    bonus_luk_8 = cv2.imread(EIGHT_LUK_LINE)
-    base_luk_9 = cv2.imread(NINE_LUK_LINE)
-    base_luk_12 = cv2.imread(TWELVE_LUK_LINE)
-    bonus_lukperlevel_1 = cv2.imread(ONE_LUK_PER_LEVEL_LINE)
-    bonus_lukperlevel_2 = cv2.imread(TWO_LUK_PER_LEVEL_LINE)
-
-    # ALL
-    bonus_allstat_5 = cv2.imread(FIVE_ALLSTAT_LINE)
-    base_allstat_6 = bonus_allstat_6 = cv2.imread(SIX_ALLSTAT_LINE)
-    base_allstat_9 = bonus_allstat_9 = cv2.imread(NINE_ALLSTAT_LINE)
-
-    # HP
-    bonus_hp_8 = cv2.imread(EIGHT_HP_LINE)
-    base_hp_9 = cv2.imread(NINE_HP_LINE)
-    bonus_hp_11 = cv2.imread(ELEVEN_HP_LINE)
-    base_hp_12 = cv2.imread(TWELVE_HP_LINE)
-
-    # CRIT DMG
-    base_critdmg_8 = cv2.imread(CRIT_DMG_LINE)
-
-    # CD
-    base_cd_1 = bonus_cd_1 = cv2.imread(ONE_CD_LINE)
-    base_cd_2 = bonus_cd_2 = cv2.imread(TWO_CD_LINE)
-
-    print(f"Loading weapon lines...")
-    base_att_9 = bonus_att_9 = cv2.imread(NINE_ATT_LINE)
-    base_att_12 = bonus_att_12 = cv2.imread(TWELVE_ATT_LINE)
-    base_matt_9 = bonus_matt_9 = cv2.imread(NINE_MATT_LINE)
-    base_matt_12 = bonus_matt_12 = cv2.imread(TWELVE_MATT_LINE)
-    base_dmg_9 = bonus_dmg_9 = cv2.imread(NINE_DMG_LINE)
-    base_dmg_12 = bonus_dmg_12 = cv2.imread(TWELVE_DMG_LINE)
-    base_boss_30 = cv2.imread(BOSS_DMG_LINE)
-    base_ied_30 = cv2.imread(IED_LINE)
-
-    print(f"Loading meso & drop lines...")
-    base_meso_20 = cv2.imread(MESO_LINE)
-    base_drop_20 = cv2.imread(DROP_LINE)
-
-    print(f"done loading base & bonus templates!")
-    base_templates = {
-        'base_str_6': base_str_6,
-        'base_str_9': base_str_9,
-        'base_str_12': base_str_12,
-        'base_dex_6': base_dex_6,
-        'base_dex_9': base_dex_9,
-        'base_dex_12': base_dex_12,
-        'base_int_6': base_int_6,
-        'base_int_9': base_int_9,
-        'base_int_12': base_int_12,
-        'base_luk_6': base_luk_6,
-        'base_luk_9': base_luk_9,
-        'base_luk_12': base_luk_12,
-        'base_allstat_6': base_allstat_6,
-        'base_allstat_9': base_allstat_9,
-        'base_hp_9': base_hp_9,
-        'base_hp_12': base_hp_12,
-        'base_critdmg_8': base_critdmg_8,
-        'base_att_9': base_att_9,
-        'base_att_12': base_att_12,
-        'base_matt_9': base_matt_9,
-        'base_matt_12': base_matt_12,
-        'base_dmg_9': base_dmg_9,
-        'base_dmg_12': base_dmg_12,
-        'base_boss_30': base_boss_30,
-        'base_ied_30': base_ied_30,
-        'base_meso_20': base_meso_20,
-        'base_drop_20': base_drop_20,
-        'base_cd_1': base_cd_1,
-        'base_cd_2': base_cd_2
-    }
-    bonus_templates = {
-        'bonus_str_6': bonus_str_6,
-        'bonus_str_8': bonus_str_8,
-        'bonus_strperlevel_1': bonus_strperlevel_1,
-        'bonus_strperlevel_2': bonus_strperlevel_2,
-        'bonus_dex_6': bonus_dex_6,
-        'bonus_dex_8': bonus_dex_8,
-        'bonus_dexperlevel_1': bonus_dexperlevel_1,
-        'bonus_dexperlevel_2': bonus_dexperlevel_2,
-        'bonus_int_6': bonus_int_6,
-        'bonus_int_8': bonus_int_8,
-        'bonus_intperlevel_1': bonus_intperlevel_1,
-        'bonus_intperlevel_2': bonus_intperlevel_2,
-        'bonus_luk_6': bonus_luk_6,
-        'bonus_luk_8': bonus_luk_8,
-        'bonus_lukperlevel_1': bonus_lukperlevel_1,
-        'bonus_lukperlevel_2': bonus_lukperlevel_2,
-        'bonus_allstat_5': bonus_allstat_5,
-        'bonus_allstat_6': bonus_allstat_6,
-        'bonus_allstat_9': bonus_allstat_9,
-        'bonus_hp_8': bonus_hp_8,
-        'bonus_hp_11': bonus_hp_11,
-        'bonus_att_9': bonus_att_9,
-        'bonus_att_12': bonus_att_12,
-        'bonus_matt_9': bonus_matt_9,
-        'bonus_matt_12': bonus_matt_12,
-        'bonus_dmg_9': bonus_dmg_9,
-        'bonus_dmg_12': bonus_dmg_12,
-        'bonus_cd_1': bonus_cd_1,
-        'bonus_cd_2': bonus_cd_2
-    }
-    return [base_templates, bonus_templates]
-
-
-# def findAssetInImage(asset, image, potential_name):
-#     res = cv2.matchTemplate(image, asset, cv2.TM_CCOEFF_NORMED)
-
-#     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-#     threshold = 0.99
-#     loc = np.where(res >= threshold)
-#     matched_stats = []
-
-#     for pt in zip(*loc[::-1]):
-#         print(f"{potential_name} present with {(max_val * 100):.2f}% confidence!")
-#         matched_stats.append(potential_name)
-#     return matched_stats
-
-
-# def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):
-#     counter = 0
-#     if region is not None:
-#         box = pyautogui.locateOnWindow(
-#             asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
-#     else:
-#         box = pyautogui.locateOnWindow(
-#             asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
-#     while box is None:
-#         counter += 1
-#         if region is not None:
-#             box = pyautogui.locateOnWindow(
-#                 asset, title='YEONHWA', confidence=confidence, grayscale=grayscale, region=region)
-#             if counter >= TIMEOUT:
-#                 print(f"Timed out without finding asset in region:", asset)
-#                 return None
-#         else:
-#             box = pyautogui.locateOnWindow(
-#                 asset, title='YEONHWA', confidence=confidence, grayscale=grayscale)
-#             if counter >= TIMEOUT:
-#                 print(f"Timed out without finding asset:", asset)
-#                 return None
-#     if box is None:
-#         return None
-#     if log:
-#         print("Found asset: ", asset, box)
-#     return pyautogui.center(box)
 
 
 def context_menu_cube():
@@ -232,40 +57,6 @@ def context_menu_cube():
                 pyautogui.sleep(delay)
     else:
         print(f"Could not open cubing menu, quitting")
-        file = open(f"./log/{log_file_name}.log", "a+")
-        file.write(f"End of log. Cubes consumed: {counter}\n")
-        file.write(f"-------------------------------------------------------\n")
-        file.close()
-        pygame.quit()
-        sys.exit(1)
-
-
-def talk_to_npc():
-    global counter
-    pos = findAsset(CUBE_NPC, 0.9)
-    if pos is not None:
-        print(f"Clicking NPC")
-        # NPC interaction
-        pyautogui.click(pos)
-        pyautogui.sleep(delay)
-        # Move cursor off NPC area
-        pyautogui.moveTo(pos.x+250, pos.y+250)
-        pyautogui.sleep(delay)
-        print(f"Hitting Enter")
-        # Select first item as cube target
-        pydirectinput.press("enter")
-        pyautogui.sleep(delay)
-        # Click to finish generating dialogue
-        pyautogui.click(pos.x-500, pos.y)
-        pyautogui.sleep(delay)
-        # On cube selection page -> scroll down to cube select menu
-        down = findAsset(DOWN, 0.9)
-        if down is not None:
-            print(f"Scrolling down")
-            pyautogui.click(down, clicks=50)
-            pyautogui.sleep(delay)
-    else:
-        print(f"NPC was not found, quitting")
         file = open(f"./log/{log_file_name}.log", "a+")
         file.write(f"End of log. Cubes consumed: {counter}\n")
         file.write(f"-------------------------------------------------------\n")
@@ -355,10 +146,6 @@ def proceed_cubing(continue_asset):
     except:
         print(f"Could not find confirm NPC dialogue!")
         print(f"Could not begin cubing, aborting.")
-        # file = open(f"./log/{log_file_name}.log", "a+")
-        # file.write(f"End of log. Cubes consumed: {counter}\n")
-        # file.write(f"-------------------------------------------------------\n")
-        # file.close()
         pygame.quit()
         sys.exit(1)
 
@@ -431,7 +218,7 @@ def main():
     # target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 40, "basedrop": 40}
     # target_stats = {"baseluk": 25, "basemeso": 40, "basedrop": 40}
     # target_stats = {"basemeso": 40}
-    target_stats = {"baseluk": 25}
+    target_stats = {"baseluk": 5}
     # target_stats = {"baseatt": 25}
     # target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
     cube_limit = 2000
@@ -440,9 +227,8 @@ def main():
     context_menu_cube()
     # initial cube selection step -> produces item's initial stat as cuberesult.png
     select_cube(cube)
-    recube(all_templates, item, cube, target_stats, True)
+    should_recube = recube(all_templates, item, cube, target_stats, True)
     try:
-        should_recube = True
         while should_recube and running:
             if counter > cube_limit:
                 print(f"Counter reached cube limit: {cube_limit}")
