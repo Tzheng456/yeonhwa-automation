@@ -85,6 +85,7 @@ TWO_CD_LINE = './assets/potentials/stat/base/2_cd_line.png'
 
 ### FLAMES ###
 FLAME_RESULT = './assets/temp/flameresult.png'
+FLAME_NPC = './assets/npc/flame/flame_npc.png'
 
 ### NPC ###
 ETERNAL_FLAME = './assets/npc/flame/eternal_flame.png'

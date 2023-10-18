@@ -14,7 +14,6 @@ from util.image_recog import findAssetInImage, findAsset
 from util.screenshot import *
 
 delay = 0.5
-NUM_LINES = 3
 log_file_name = 'greed_pendant_bonus_hist'
 counter = 0
 running = True
