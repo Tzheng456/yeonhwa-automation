@@ -5,7 +5,7 @@ import pydirectinput
 
 TIMEOUT = 5
 
-def findAssetInImage(asset, image, potential_name):
+def findAllMatchedStatsInImage(asset, image, potential_name):
     res = cv2.matchTemplate(image, asset, cv2.TM_CCOEFF_NORMED)
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
@@ -17,6 +17,34 @@ def findAssetInImage(asset, image, potential_name):
         print(f"{potential_name} present with {(max_val * 100):.2f}% confidence!")
         matched_stats.append(potential_name)
     return matched_stats
+
+def findFlameLineInImage(asset, image):
+
+    # Load the original image and the subregion image
+    original_image = image
+    subregion_image = asset
+
+    # Match the subregion in the original image
+    result = cv2.matchTemplate(original_image, subregion_image, cv2.TM_CCOEFF_NORMED)
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+    threshold = 0.99  # Set your desired threshold value (adjust as needed)
+    loc = np.where(result >= threshold)
+
+    for pt in zip(*loc[::-1]):
+        x, y = pt
+        h, w, _ = subregion_image.shape
+
+        # Crop the original image with an extended width
+        extended_width = 200
+        cropped_image = original_image[y:y+h, x:x+w+extended_width]
+
+        # Save the result
+        cv2.imwrite('./assets/temp/curr_flame_line.png', cropped_image)
+        if cropped_image is None: return None
+        return cropped_image
+    
+
+    
 
 
 def findAsset(asset, confidence=0.98, grayscale=True, region=None, log=True):

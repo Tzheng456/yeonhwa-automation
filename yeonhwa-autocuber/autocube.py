@@ -10,10 +10,10 @@ import keyboard
 from assets.asset import *
 from models.item import Item
 from templates.cube_templates import loadPotentialTemplates
-from util.image_recog import findAssetInImage, findAsset
+from util.image_recog import findAllMatchedStatsInImage, findAsset
 from util.screenshot import *
 
-delay = 0.5
+delay = 0.2
 log_file_name = 'greed_pendant_bonus_hist'
 counter = 0
 running = True
@@ -101,7 +101,7 @@ def update_cache_item(all_templates, item, cube):
     # multi templates matching against each stat
     # item updated with stats
     for potential_name in templates.keys():
-        matched_stats = findAssetInImage(
+        matched_stats = findAllMatchedStatsInImage(
             templates[potential_name], cube_result, potential_name)
         if len(matched_stats) > 0:
             for matched_stat in matched_stats:
@@ -212,14 +212,14 @@ def main():
                        "init_anchor": RED_CUBE_ANCHOR_INITIAL}
     BONUS_CUBE_CONFIG = {"type": BONUS_CUBE, "anchor": BONUS_CUBE_ANCHOR,
                          "init_anchor": BONUS_CUBE_ANCHOR_INITIAL}
-    cube = RED_CUBE_CONFIG
-    # cube = BONUS_CUBE_CONFIG
-    # target_stats = {"baseint": 31, "basestr": 31, "basedex": 31, "baseluk": 25, "basemeso": 40, "basedrop": 40}
+    # cube = RED_CUBE_CONFIG
+    cube = BONUS_CUBE_CONFIG
+    # target_stats = {"baseint": 25, "basestr": 31, "basedex": 31, "baseluk": 31, "basemeso": 40, "basedrop": 40}
     # target_stats = {"baseluk": 25, "basemeso": 40, "basedrop": 40}
     # target_stats = {"basemeso": 40}
-    target_stats = {"baseluk": 5}
-    # target_stats = {"baseatt": 25}
-    # target_stats = {"bonusluk": 11, "bonuslukperlevel": 4}
+    # target_stats = {"baseluk": 5}
+    target_stats = {"bonusmatt": 25}
+    # target_stats = {"bonusint": 11, "bonusintperlevel": 4}
     cube_limit = 2000
     # initial run
     # talk_to_npc()  # includes selecting item to cube step

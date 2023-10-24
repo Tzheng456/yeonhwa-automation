@@ -86,6 +86,8 @@ TWO_CD_LINE = './assets/potentials/stat/base/2_cd_line.png'
 ### FLAMES ###
 FLAME_RESULT = './assets/temp/flameresult.png'
 FLAME_NPC = './assets/npc/flame/flame_npc.png'
+FLAME_PLUS = './assets/flame/plus.png'
+FLAME_MOD = './assets/flame/mod.png'
 
 ### NPC ###
 ETERNAL_FLAME = './assets/npc/flame/eternal_flame.png'
@@ -102,5 +104,6 @@ FLAME_LUK_LINE = './assets/flame/stat/luk.png'
 
 ### WEP ###
 FLAME_ATT_LINE = './assets/flame/wep/att.png'
+FLAME_MATT_LINE = './assets/flame/wep/matt.png'
 FLAME_BOSSDMG_LINE = './assets/flame/wep/bossdmg.png'
 FLAME_DMG_LINE = './assets/flame/wep/dmg.png'

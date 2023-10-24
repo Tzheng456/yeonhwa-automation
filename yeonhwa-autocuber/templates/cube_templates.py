@@ -1,7 +1,9 @@
 import cv2
 from assets.asset import *
+
+
 def loadPotentialTemplates():
-    print(f"Loading stat lines...")
+    print(f"Loading stat line templates...")
     # STR
     base_str_6 = bonus_str_6 = cv2.imread(SIX_STR_LINE)
     bonus_str_8 = cv2.imread(EIGHT_STR_LINE)
