@@ -31,9 +31,9 @@ def search_image():
                 d = search(DARK)
                 if l is not None or d is not None:
                     print(f"GLITCHING FAILED - WAITING FOR REATTEMPT...")
-                    offsets = [0.01, -0.01, 0.02, -0.02]
+                    offsets = [20.51, 20.52, 20.53, 20.54]
                     offset = random.choice(offsets)
-                    sleep_time += offset
+                    sleep_time = offset
                     pass
                 else:
                     g = search(GLITCHED)
