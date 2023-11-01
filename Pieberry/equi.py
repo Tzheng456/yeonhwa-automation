@@ -9,9 +9,10 @@ from assets import *
 
 running = True
 sleep_time = 20.52
+TITLE = "YEONHWA"
 
 def search(asset, conf=0.9):
-    return pyautogui.locateOnWindow(asset, "YEONHWA", confidence=conf)
+    return pyautogui.locateOnWindow(asset, TITLE, confidence=conf)
 
 def search_image():
     print(f"auto equilibrium glitcher started")
@@ -26,7 +27,7 @@ def search_image():
                 print(f"CASTING DOOR NOW!")
                 pydirectinput.press("n")
                 print(f"CHECKING IF GLITCHED...")
-                pyautogui.sleep(1)
+                pyautogui.sleep(2)
                 l = search(LIGHT)
                 d = search(DARK)
                 if l is not None or d is not None:
