@@ -233,7 +233,8 @@ def main():
     templates = loadPotentialTemplates()
     item_before = Item()
     item_after = Item()
-    target_stats = [{"basemeso": 20, "basedrop": 20}, {"basemeso": 21}, {"basedrop": 21}, {"basedex": 33}, {"baseint": 33}, {"basestr": 33}, {"baseluk": 33}]
+    target_stats = [{"basedrop": 21}, {"basedex": 33}, {"baseint": 33}, {"basestr": 33}, {"baseluk": 33}]
+    # target_stats = [{"basemeso": 20, "basedrop": 20}, {"basemeso": 21}, {"basedrop": 21}, {"basedex": 33}, {"baseint": 33}, {"basestr": 33}, {"baseluk": 33}]
     cube_limit = 2000
     open_cuber()
     # check if stats on item already meet target_stats
